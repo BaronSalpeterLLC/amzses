@@ -21,6 +21,7 @@ import (
 	"net/url"
 	"strings"
 	"time"
+	"os"
 )
 
 const (
@@ -30,7 +31,7 @@ const (
 var accessKey, secretKey string
 
 func init() {
-	config := jconfig.LoadConfig("/etc/aws.conf")
+	config := jconfig.LoadConfig( os.Getenv("GOPATH") + "/assets/config/aws.json")
 	accessKey = config.GetString("aws_access_key")
 	secretKey = config.GetString("aws_secret_key")
 }
