@@ -36,7 +36,7 @@ func init() {
 	secretKey = config.GetString("aws_secret_key")
 }
 
-func SendMail(from, to, subject, body string) (string, error) {
+func SendMail(from, to, subject, replyto, body string) (string, error) {
 	data := make(url.Values)
 	data.Add("Action", "SendEmail")
 	data.Add("Source", from)
@@ -44,11 +44,16 @@ func SendMail(from, to, subject, body string) (string, error) {
 	data.Add("Message.Subject.Data", subject)
 	data.Add("Message.Body.Text.Data", body)
 	data.Add("AWSAccessKeyId", accessKey)
+	
+	if (replyto != "")	{
+		data.Add("Opt.ReplyToAddresses", replyto)
+	}
 
 	return sesPost(data)
 }
 
-func SendMailHTML(from, to, subject, bodyText, bodyHTML string) (string, error) {
+
+func SendMailHTML(from, to, subject, replyto, bodyText, bodyHTML string) (string, error) {
 	data := make(url.Values)
 	data.Add("Action", "SendEmail")
 	data.Add("Source", from)
@@ -57,6 +62,10 @@ func SendMailHTML(from, to, subject, bodyText, bodyHTML string) (string, error) 
 	data.Add("Message.Body.Text.Data", bodyText)
 	data.Add("Message.Body.Html.Data", bodyHTML)
 	data.Add("AWSAccessKeyId", accessKey)
+	
+	if (replyto != "")	{
+		data.Add("Opt.ReplyToAddresses", replyto)
+	}
 
 	return sesPost(data)
 }
