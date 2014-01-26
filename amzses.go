@@ -46,7 +46,7 @@ func SendMail(from, to, subject, replyto, body string) (string, error) {
 	data.Add("AWSAccessKeyId", accessKey)
 	
 	if (replyto != "")	{
-		data.Add("Opt.ReplyToAddresses", replyto)
+		data.Add("ReplyToAddresses.member.1", replyto)
 	}
 
 	return sesPost(data)
@@ -64,7 +64,7 @@ func SendMailHTML(from, to, subject, replyto, bodyText, bodyHTML string) (string
 	data.Add("AWSAccessKeyId", accessKey)
 	
 	if (replyto != "")	{
-		data.Add("Opt.ReplyToAddresses", replyto)
+		data.Add("ReplyToAddresses.member.1", replyto)
 	}
 
 	return sesPost(data)
