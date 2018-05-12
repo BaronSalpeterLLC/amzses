@@ -14,7 +14,6 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
-	"github.com/stathat/jconfig"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -22,6 +21,8 @@ import (
 	"strings"
 	"time"
 	"os"
+
+    "stathat.com/c/jconfig"
 )
 
 const (
